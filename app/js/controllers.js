@@ -2,8 +2,26 @@
 
 var helpersApp = angular.module('helpersApp', ['ngAnimate']);
 
+helpersApp.controller('Init', function($scope) {
+  $scope.showButtonRight = true;
+  $scope.showButtonLeft = true;
+  $scope.showHelpForm = false;
+  $scope.showQuestions = false;
+
+  $scope.enterQuestion = function() {
+    $scope.showButtonRight = false;
+    $scope.showHelpForm = true;
+  };
+
+  $scope.showQuestionList = function() {
+    $scope.showButtonLeft = false;
+    $scope.showQuestions = true;
+  };
+});
+
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   $scope.hint = "How can we help you today?";
+
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {
 
@@ -18,6 +36,7 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
       $scope.Question = "";
     }
   };
+
 });
 
 helpersApp.controller('QuestionsCtrl', function($scope) {
