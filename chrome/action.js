@@ -14,10 +14,14 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   }
 });
 
+function rejected() {
+  console.log("rejected")
+}
+
 function approved(id) {
 
   if (!id) {
-    console.log("REJECTED");
+    rejected();
     return;
   }
   
@@ -36,34 +40,16 @@ function approved(id) {
         maxHeight: screen.height
       }
     }
-  }, stream2, error);
+  }, stream, error);
 }
 
 function error(err) {
   console.log(err);
 }
 
-function stream2(stream) {
-  chrome.runtime.sendMessage("screenshot:" + URL.createObjectURL(stream));
-}
-
 function stream(stream) {
-  var video = document.createElement("video");
-  video.videoWidth = screen.width;
-  video.videoHeight = screen.height;
-  video.height = screen.height;
-  video.width = screen.width;
-  video.src = URL.createObjectURL(stream);
-  console.log(video.src);
+  var url =  URL.createObjectURL(stream);
+  chrome.runtime.sendMessage("screenshot:" + url);
   
-  var canvas = document.createElement("canvas");
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  
-  var context = canvas.getContext("2d");
-  context.drawImage(video, 0, 0, screen.width, screen.height);
-  
-  var data = canvas.toDataURL();
-  console.log(data);
-  chrome.runtime.sendMessage("screenshot:" + data)
+  console.log(url);
 }
