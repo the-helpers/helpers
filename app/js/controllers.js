@@ -19,6 +19,7 @@ helpersApp.controller('Init', function($scope) {
   };
 });
 
+
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   $scope.hint = "How can we help you today?";
 
@@ -30,17 +31,21 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
+        console.log(response);
       }, function errorCallback(response) {
+        console.log(response);
       });
 
       $scope.Question = "";
     }
   };
 
+  /*
   var socket = io.connect();
   socket.on('answer', function () {
     alert("It's a match!");
   });
+  */
 });
 
 helpersApp.controller('QuestionsCtrl', function($scope) {
