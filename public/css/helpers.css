@@ -1,6 +1,28 @@
-#titlebox {
+/* ************
+ * Static stuff
+ * ************ */
+ #titlebox {
   margin: 30px auto;
-  width: 43%;
+  width: 83%;
   text-align: center;
   background-color: #F4F8FF;
+}
+
+
+/* ***************
+ * Animation stuff
+ * *************** */
+.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
 }

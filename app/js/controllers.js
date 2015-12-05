@@ -1,6 +1,6 @@
 "use strict";
 
-var helpersApp = angular.module('helpersApp', []);
+var helpersApp = angular.module('helpersApp', ['ngAnimate']);
 
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   $scope.hint = "How can we help you today?";
