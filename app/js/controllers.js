@@ -22,6 +22,14 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
 
 helpersApp.controller('QuestionsCtrl', function($scope) {
   var socket = io.connect();
-  socket.on('connection', function () {
+  $scope.questions = [];
+
+  socket.on('connect', function () {
+    console.log('Connected to backend');
+  });
+
+  socket.on('question', function (question) {
+    $scope.questions.push(question);
+    $scope.$apply();
   });
 });
