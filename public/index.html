@@ -8,7 +8,7 @@
 </head>
 <body>
   <section class="question" ng-controller="QueryCtrl">
-    <input type="text" value="{{hint}}" />
+    <input type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" />
   </section>
 </body>
 </html>
