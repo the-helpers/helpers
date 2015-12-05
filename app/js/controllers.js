@@ -1,6 +1,6 @@
 "use strict";
 
-var helpersApp = angular.module('helpersApp', []);
+var helpersApp = angular.module('helpersApp', ['ngAnimate']);
 
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   $scope.hint = "How can we help you today?";
@@ -18,10 +18,25 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
       $scope.Question = "";
     }
   };
+
+  var socket = io.connect();
+  socket.on('answer', function () {
+    alert("It's a match!");
+  });
 });
 
 helpersApp.controller('QuestionsCtrl', function($scope) {
+  $scope.questions = [];
+  $scope.answerQuestion = function (id) {
+  }
+
   var socket = io.connect();
-  socket.on('connection', function () {
+  socket.on('connect', function () {
+    console.log('Connected to backend');
+  });
+
+  socket.on('question', function (question) {
+    $scope.questions.push(question);
+    $scope.$apply();
   });
 });
