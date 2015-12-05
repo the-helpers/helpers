@@ -1,0 +1,37 @@
+{
+  "name": "helpers",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Helpers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-helpers/helpers.git"
+  },
+  "contributors": [
+    {
+      "name": "Konrad Reiche"
+    },
+    {
+      "name": "Julian Fleischer"
+    },
+    {
+      "name": "Andre Zoufahl"
+    }
+  ],
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/the-helpers/helpers/issues"
+  },
+  "homepage": "https://github.com/the-helpers/helpers#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "white-horse": "^1.1.2"
+  }
+}
