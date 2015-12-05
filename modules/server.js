@@ -1,4 +1,4 @@
-module.exports = function (chalk, io, http, app, config, logger, $done) {
+module.exports = function (chalk, http, app, config, logger, $done) {
 
   config = config.get('web');
 
