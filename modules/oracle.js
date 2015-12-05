@@ -21,9 +21,12 @@ module.exports = function (logger, redis, socket, shortid) {
       const id = shortid.generate();
       client.set(`question:${id}`, question);
       socket.emit('question', { id: id, text: question });
+      return id;
     },
 
     answer: function (id) {
+      client.set(`assigned:${id}`, true);
+      socket.emit('answer', id);
     }
   };
 };
