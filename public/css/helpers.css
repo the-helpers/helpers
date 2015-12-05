@@ -2,21 +2,37 @@
  * Static stuff
  * ************ */
  #titlebox {
-  margin: 30px auto;
+  margin: 60px auto;
   width: 83%;
   text-align: center;
-  background-color: #F4F8FF;
 }
-
 
 /* ***************
  * Animation stuff
  * *************** */
-.showHideTransition {
+.showHideTrhctansition {
   -webkit-transition:all linear 0.5s;
   transition:all linear 0.5s;
 }
 
 .showHideTransition.ng-hide {
   opacity:0;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+.container {
+  text-align: center;
+}
+
+button.ask, button.help {
+  height: 50px;
+  line-height: 50px;
+  font-size: 13px;
 }
