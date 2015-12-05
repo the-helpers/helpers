@@ -40,10 +40,16 @@
           </section>
         </div>
 
+      </div>
+      <div class="one-half column">
+
         <div ng-show="showQuestions" class="showHideTransition">
+          <div class="filter">
+            <input type="text" placeholder="filter list" ng-model="query" />
+          </div>
           <section class="questions" ng-controller="QuestionsCtrl">
             <ol>
-              <li ng-repeat="question in questions" ng-click="answerQuestion(question.id)">{{question.text}}</li>
+              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
             </ol>
           </section>
         </div>

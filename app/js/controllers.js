@@ -33,7 +33,6 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
-
         socket.on('answer', function (id) {
           if (response.data == id) {
             alert("It's a match!");
