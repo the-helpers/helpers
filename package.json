@@ -28,10 +28,14 @@
   },
   "homepage": "https://github.com/the-helpers/helpers#readme",
   "devDependencies": {
+    "bower": "^1.6.9",
     "gulp": "^3.9.0"
   },
   "dependencies": {
+    "angular": "^1.4.8",
     "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "nodash": "^0.12.0",
     "white-horse": "^1.1.2"
   }
 }
