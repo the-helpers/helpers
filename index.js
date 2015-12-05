@@ -1,10 +1,10 @@
 "use strict";
 
 const express = require('express');
+const router  = require('./router');
 const app = express();
 
-app.use('/', express.static('public'));
-app.use('/js', express.static('dist'));
+app.use('/', router);
 
 const server = app.listen(3000, function () {
   const host = server.address().address;
