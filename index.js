@@ -2,20 +2,7 @@
 
 var WhiteHorse = require('white-horse');
 
-var whiteHorse = new WhiteHorse()
-
-
-.on('before_init', function (module) {
-    console.log('Initializing', module);
-})
-
-.on('after_init', function (module) {
-    console.log('Initialized', module);
-})
-
-.on('require', function (file) {
-    console.log('Requiring', file);
-});
+var whiteHorse = new WhiteHorse();
 
 whiteHorse.register('root', __dirname);
 
