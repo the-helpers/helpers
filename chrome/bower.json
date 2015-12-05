@@ -1,0 +1,21 @@
+{
+  "name": "thehelpers-chrome-extension",
+  "homepage": "https://github.com/the-helpers/helpers",
+  "authors": [
+    "Julian Fleischer <julian.fleischer@gamegenetics.de>"
+  ],
+  "description": "Chrome Extension for ScreenSharing in The Helpers.",
+  "main": "capture.js",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "UNLICENSED",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

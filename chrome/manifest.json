@@ -13,8 +13,15 @@
     //"default_popup": "capture.html",
     "default_icon": "icon.svg"
   },
-  
+
   "permissions": [
     "desktopCapture"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": [ "http://*/*" ],
+      "js": [ "inject.js" ]
+    }
   ]
 }
