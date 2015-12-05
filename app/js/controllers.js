@@ -20,6 +20,8 @@ helpersApp.controller('Init', function($scope) {
 });
 
 helpersApp.controller('AskCtrl', function ($scope, $http) {
+  var socket = io.connect();
+
   $scope.hint = "How can we help you today?";
 
   $scope.askQuestion = function ($event) {
@@ -30,22 +32,31 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
+
+        socket.on('answer', function (id) {
+          if (response.data == id) {
+            alert("It's a match!");
+          }
+        });
+
       }, function errorCallback(response) {
       });
 
       $scope.Question = "";
     }
   };
-
-  var socket = io.connect();
-  socket.on('answer', function () {
-    alert("It's a match!");
-  });
 });
 
-helpersApp.controller('QuestionsCtrl', function($scope) {
+helpersApp.controller('QuestionsCtrl', function($scope, $http) {
   $scope.questions = [];
   $scope.answerQuestion = function (id) {
+    $http({
+      method: 'POST',
+      data: { id: id },
+      url: '/answer'
+    }).then(function successCallback(response) {
+    }, function errorCallback(response) {
+    });
   }
 
   var socket = io.connect();

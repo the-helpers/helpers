@@ -4,8 +4,8 @@ module.exports = function (router, oracle) {
 
   router.post('/ask', function (req, res) {
     if (req.body.question) {
-      oracle.ask(req.body.question);
-      res.sendStatus(200);
+      const id = oracle.ask(req.body.question);
+      res.send(id);
     } else {
       res.sendStatus(500);
     }
