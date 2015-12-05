@@ -47,11 +47,6 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
     }
   };
 
-  var socket = io.connect();
-  socket.on('answer', function () {
-    alert("It's a match!");
-  });
-
 });
 
 helpersApp.controller('QuestionsCtrl', function($scope, $http) {
