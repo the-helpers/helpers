@@ -22,22 +22,20 @@
     <div class="row">
 
 
-      <div id="neededhelp" class="one-half column" ng-show="showButtonLeft">
-        <button class="ask button-primary" ng-click="enterQuestion()">I need help</button>
+      <div id="neededhelp" ng-show="showButtonLeft">
+        <button class="ask" ng-click="enterQuestion()">I need help</button>
       </div>
 
 
-      <div id="providehelp" class="one-half column" ng-show="showButtonRight">
-        <button class="help button-primary" ng-click="showQuestionList()">I want to help</button>
+      <div id="providehelp" ng-show="showButtonRight">
+        <button class="help" ng-click="showQuestionList()">I want to help</button>
       </div>
     </div>
     <div class="row">
-      <div class="one-half column">
-        <div ng-show="showHelpForm" class="showHideTransition">
-          <section class="ask" ng-controller="AskCtrl">
-            <input type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" />
-          </section>
-        </div>
+      <div ng-show="showHelpForm" class="showHideTransition">
+        <section class="ask" ng-controller="AskCtrl">
+          <input class="ask" type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" />
+        </section>
 
       </div>
       <div class="one-half column">

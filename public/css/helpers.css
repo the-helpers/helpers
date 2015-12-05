@@ -35,4 +35,21 @@ button.ask, button.help {
   height: 50px;
   line-height: 50px;
   font-size: 13px;
+  width: 200px;
+}
+
+button.ask {
+  margin-right: 50px;
+}
+
+button.help {
+  margin-left: 50px;
+}
+
+#neededhelp, #providehelp {
+  display: inline-block;
+}
+
+input.ask {
+  width: 50%;
 }
