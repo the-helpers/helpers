@@ -9,17 +9,21 @@ module.exports = function (logger, redis, socket, shortid) {
     client.keys('question:*', function (err, keys) {
       keys.forEach(function (key) {
         client.get(key, function (err, value) {
-          socket.emit('question', value);
+          const id = key.split(':').pop();
+          socket.emit('question', { id: id, text: value });
         });
       });
     });
   });
 
   return {
-    answer: function (question) {
+    ask: function (question) {
       const id = shortid.generate();
       client.set(`question:${id}`, question);
-      client.publish('questions', question);
+      socket.emit('question', { id: id, text: question });
+    },
+
+    answer: function (id) {
     }
   };
 };

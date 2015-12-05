@@ -2,9 +2,9 @@
 
 module.exports = function (router, oracle) {
 
-  router.post('/ask', function (req, res) {
-    if (req.body.question) {
-      oracle.ask(req.body.question);
+  router.post('/answer', function (req, res) {
+    if (req.body.id) {
+      oracle.answer(req.body.id);
       res.sendStatus(200);
     } else {
       res.sendStatus(500);
