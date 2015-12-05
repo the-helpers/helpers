@@ -10,5 +10,9 @@ chrome.runtime.onMessage.addListener(function (message) {
     var data = message.substring(prefix.length);
     console.log(data);
     document.getElementById("image").src = data;
+    var i = 0;
+    window.setInterval(function () {
+      document.getElementById("msg").innerHTML = i++;
+    }, 1000);
   }
 })
