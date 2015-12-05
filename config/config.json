@@ -1,0 +1,9 @@
+{
+  "web": {
+    "port": 8000
+  },
+  
+  "logging": {
+    "level": "trace"
+  }
+}

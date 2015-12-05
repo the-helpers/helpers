@@ -5,6 +5,7 @@
   "description": "The Helpers",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,11 +33,15 @@
     "gulp": "^3.9.0"
   },
   "dependencies": {
-    "angular": "^1.4.8",
+    "body-parser": "^1.14.1",
+    "chalk": "^1.1.1",
     "confit": "^2.0.3",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "nodash": "^0.12.0",
+    "socket.io": "^1.3.7",
+    "sprintf": "^0.1.5",
+    "uuid-1345": "^0.99.6",
     "white-horse": "^1.1.2"
   }
 }

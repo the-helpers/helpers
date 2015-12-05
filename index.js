@@ -1,13 +1,42 @@
-"use strict";
+'use strict';
 
-const express = require('express');
-const app = express();
+var WhiteHorse = require('white-horse');
 
-app.use('/', express.static('public'));
+var whiteHorse = new WhiteHorse()
 
-const server = app.listen(3000, function () {
-  const host = server.address().address;
-  const port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
+.on('before_init', function (module) {
+    console.log('Initializing', module);
+})
+
+.on('after_init', function (module) {
+    console.log('Initialized', module);
+})
+
+.on('require', function (file) {
+    console.log('Requiring', file);
 });
+
+whiteHorse.register('root', __dirname);
+
+whiteHorse
+  .use(require('./package.json'))
+  .useAs('uuid-1345', 'UUID')
+  .useAs('body-parser', 'bodyParser')
+  .useAs('socket.io', 'io')
+  .useAs('url', 'URL')
+  .use('http')
+  .use('path')
+  .run(__dirname, 'modules', function (err) {
+    if (err) {
+      console.log('Failed to initialize app');
+      if (err.error) {
+        console.log(err.module, 'failed to load');
+        console.log(err.error.stack);
+      } else {
+        console.log(err);
+      }
+      process.exit(1);
+      return;
+    }
+  });
