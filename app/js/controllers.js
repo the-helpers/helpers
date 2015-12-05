@@ -2,9 +2,8 @@
 
 var helpersApp = angular.module('helpersApp', []);
 
-helpersApp.controller('QueryCtrl', function ($scope, $http) {
+helpersApp.controller('AskCtrl', function ($scope, $http) {
   $scope.hint = "How can we help you today?";
-
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {
 
@@ -19,4 +18,10 @@ helpersApp.controller('QueryCtrl', function ($scope, $http) {
       $scope.Question = "";
     }
   };
+});
+
+helpersApp.controller('QuestionsCtrl', function($scope) {
+  var socket = io.connect();
+  socket.on('connection', function () {
+  });
 });
