@@ -1,6 +1,6 @@
 "use strict";
 
-var helpersApp = angular.module('helpersApp', ['ngAnimate']);
+var helpersApp = angular.module('helpersApp', ['ngAnimate', 'util']);
 
 helpersApp.controller('Init', function($scope) {
   $scope.showButtonRight = true;
@@ -74,6 +74,7 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
   });
 
   socket.on('question', function (question) {
+    question.askedAgo = util.askedAgo(question.ttl) + ' ago';
     $scope.questions.push(question);
     $scope.$apply();
   });
