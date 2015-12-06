@@ -1,6 +1,6 @@
 
 document.querySelector("#world").addEventListener("click", function (ev) {
-  chrome.runtime.sendMessage("askForScreen");
+  chrome.runtime.sendMessage("helpers.askForScreen");
 });
 
 var prefix = "screenshot:";
