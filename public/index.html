@@ -24,7 +24,7 @@
 
   <!-- Lobby: Ask or answer a question -->
   <div class="container" ng-show="showLobby">
-    <div class="row">
+    <!--<div class="row">-->
       <div class="neededhelp" ng-show="showButtonLeft">
         <button class="ask" ng-class="hideClass" ng-click="enterQuestion()" >I need help</button>
         <input class="ask buttonLikeInput" xng-focus="focusOnClick" ng-class="expandClassQuestion" type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" ng-controller="AskCtrl" />
@@ -35,7 +35,7 @@
         <input class="buttonLikeInput" type="text" ng-show="!buttonXorInput" ng-class="expandClassFilter" placeholder="filter list" ng-model="query" />
 
 
-        <div ng-show="showQuestions" class="showHideTransition">
+        <div ng-show="showQuestions" class="questionList showHideTransition">
           <section class="questions" ng-controller="QuestionsCtrl">
             <ol>
               <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
@@ -45,7 +45,7 @@
 
       </div>
     
-    </div>
+    <!--</div>-->
   </div>
 
   <!-- Chat -->

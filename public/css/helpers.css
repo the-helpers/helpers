@@ -30,7 +30,7 @@ input.buttonLikeInput {
 }
 
 input.wide {
-	width: 600px;
+	width: 200%;
 }
 
 h1 {
@@ -44,7 +44,7 @@ h2 {
 .container {
   text-align: center;
   margin: auto;
-  width: 76%;
+  width: 50%;
 }
 
 button.ask, button.help {
@@ -55,19 +55,19 @@ button.ask, button.help {
 }
 
 button.ask {
-  margin-right: 50px;
   position: absolute;
   left: 0;
   background-color: #FFF;
 }
 
 button.help {
-  margin-left: 50px;
+	float: right;
 }
 
 .neededhelp, .providehelp {
 	background-color: #FFFFFF;
 	position: absolute;
+	width: 50%;
 }
 
 .neededhelp {
@@ -78,6 +78,14 @@ button.help {
 	right: 0;
 }
 
+.providehelp input {
+	float: right;
+}
+
+.questionList {
+	width: 200%;
+	float: right;
+}
 
 
 /* ***************
@@ -105,9 +113,6 @@ section.ask {
   text-align: center;
 }
 
-input.ask {
-  width: 50%;
-}
 
 .fade {
   transition: 1s ease-in-out all;
