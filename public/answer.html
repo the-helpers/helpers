@@ -1,1 +1,26 @@
   <script src="/bower/peerjs/peer.min.js"></script>
+  <script>
+    
+    var peer = new Peer('xx_an-id', {
+        host: 'localhost',
+        port: 9000,
+        path: '/'
+    });
+    
+    peer.on('call', function (call) {
+      navigator.webkitGetUserMedia({ video: true, audio: true }, function (stream) {
+        call.answer(stream);
+        call.on('stream', function (remoteStream) {
+          var url = URL.createObjectURL(remoteStream);
+          console.log(url);
+          
+          var video = document.createElement("video");
+          video.src = url;
+          document.getElementsByTagName("body")[0].appendChild(video);
+        });
+      }, function (err) {
+        console.log('fuck on answer', err);
+      });
+    });
+    
+    </script>
