@@ -5,6 +5,7 @@
   margin: 60px auto;
   width: 83%;
   text-align: center;
+  position: relative;
 }
 
 /* ***************
@@ -52,4 +53,15 @@ button.help {
 
 input.ask {
   width: 50%;
+}
+
+.fade {
+  transition: 1s ease-in-out all;
+  opacity: 0;
+  top: -200px;
+}
+
+.fade.in {
+  top: 0;
+  opacity: 1;
 }

@@ -7,15 +7,18 @@ helpersApp.controller('Init', function($scope) {
   $scope.showButtonLeft = true;
   $scope.showHelpForm = false;
   $scope.showQuestions = false;
+  $scope.showTitleBox = true;
 
   $scope.enterQuestion = function() {
     $scope.showButtonRight = false;
     $scope.showHelpForm = true;
+    $scope.showTitleBox = false;
   };
 
   $scope.showQuestionList = function() {
     $scope.showButtonLeft = false;
     $scope.showQuestions = true;
+    $scope.showTitleBox = false;
   };
 });
 
