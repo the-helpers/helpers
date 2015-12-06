@@ -95,11 +95,12 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       
       var peer = new Peer('xx_' + id, {
         host: 'localhost',
-        port: 8000,
-        path: '/p2p'
+        port: 9000,
+        path: '/'
       });
-      
+      console.log("hollla die wald fee");
       navigator.webkitGetUserMedia({ video: true, audio: true }, function (stream) {
+        console.log('call geht raus');
         peer.call(id, stream);
         peer.on('stream', function (remoteStream) {
           var url = URL.createObjectURL(remoteStream);

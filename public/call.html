@@ -1,24 +1,24 @@
-  <script src="/bower/peerjs/peer.min.js"></script>
-  <script>
-    
-    var peer = new Peer('an-id', {
-        host: 'localhost',
-        port: 9000,
-        path: '/'
-    })
-    
-    navigator.webkitGetUserMedia({ video: true, audio: true }, function (stream) {
-        var call = peer.call('xx_an-id', stream);
-        call.on('stream', function (remoteStream) { 
-            var url = URL.createObjectURL(remoteStream);
-            console.log(url);
-            
-            var video = document.createElement("video");
-            video.src = url;
-            document.getElementsByTagName("body")[0].appendChild(video);
-        });
-    }, function (err) {
-        console.log("fuck on connect call", err);   
+<script src="/bower/peerjs/peer.min.js"></script>
+<script>
+
+var peer = new Peer('an-id', {
+    host: 'localhost',
+    port: 9000,
+    path: '/'
+})
+
+navigator.webkitGetUserMedia({ video: true, audio: true }, function (stream) {
+    var call = peer.call('xx_an-id', stream);
+    call.on('stream', function (remoteStream) { 
+        var url = URL.createObjectURL(remoteStream);
+        console.log(url);
+        
+        var video = document.createElement("video");
+        video.src = url;
+        document.getElementsByTagName("body")[0].appendChild(video);
     });
-    
-    </script>
+}, function (err) {
+    console.log("fuck on connect call", err);   
+});
+
+</script>

@@ -2,6 +2,63 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   
   switch (message.type) {
     case "theHelpers.question":
+      
+      chrome.windows.create({
+        url: "chat.html",
+        type: "panel",
+        focused: true,
+        width: 450,
+        height: 400
+      }, function whenDone() {
+          
+        chrome.desktopCapture.chooseDesktopMedia([ "screen" ], function approved(mediaId) {
+
+          if (!mediaId) {
+            rejected();
+            return;
+          }
+          
+          function gotStream(stream) {
+            chrome.runtime.sendMessage({
+              id: message.id,
+              stream: stream,
+              type: "theHelpers.connect"
+            });
+          }
+          
+          function gotError(error) {
+            console.log(error);
+          }
+          
+          navigator.webkitGetUserMedia({
+            audio: {
+              mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: mediaId
+              }
+            },
+            video: {
+              mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: mediaId,
+                maxWidth: screen.width,
+                maxHeight: screen.height
+              }
+            }
+          }, gotStream, gotError);
+        });
+      });
+  }
+})
+
+
+//chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  
+function noop(){};
+
+noop(function () {
+  switch (message.type) {
+    case "theHelpers.question":
       var shortId = message.id;
     
       console.log(shortId);
@@ -25,8 +82,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
           
           var peer = new Peer(shortId, {
             host: 'localhost',
-            port: 8000,
-            path: '/p2p'
+            port: 9000,
+            path: '/'
           });
           
           console.log(peer);
