@@ -1,6 +1,6 @@
 "use strict";
 
-var helpersApp = angular.module('helpersApp', ['ngAnimate']);
+var helpersApp = angular.module('helpersApp', ['ngAnimate', 'util']);
 
 helpersApp.controller('Init', function($scope) {
   $scope.showButtonRight = true;
@@ -8,6 +8,9 @@ helpersApp.controller('Init', function($scope) {
 
   $scope.showQuestions = false;
   $scope.buttonXorInput = true;
+  $scope.showTitleBox = true;
+  $scope.showLobby = true;
+  $scope.showChat = false;
 
   $scope.enterQuestion = function() {
     $scope.focusOnClick = true;
@@ -15,6 +18,8 @@ helpersApp.controller('Init', function($scope) {
     $scope.hideClass = 'hideMe';
 
     $scope.showButtonRight = false;
+    $scope.showHelpForm = true;
+    $scope.showTitleBox = false;
   };
 
   $scope.showQuestionList = function() {
@@ -23,6 +28,7 @@ helpersApp.controller('Init', function($scope) {
     $scope.showQuestions = true;
     $scope.buttonXorInput = false;
     $scope.showButtonLeft = false;
+    $scope.showTitleBox = false;
   };
 });
 
@@ -73,6 +79,8 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       data: { id: id },
       url: '/answer'
     }).then(function successCallback(response) {
+      $scope.$parent.showLobby = false;
+      $scope.$parent.showChat = true;
     }, function errorCallback(response) {
     });
   }
@@ -83,6 +91,7 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
   });
 
   socket.on('question', function (question) {
+    question.askedAgo = util.askedAgo(question.ttl) + ' ago';
     $scope.questions.push(question);
     $scope.$apply();
   });

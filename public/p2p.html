@@ -1,1 +1,28 @@
 <body id="helpers">
+	
+	
+<form id="theHelpersForm">
+	
+	<input type="text" id="theHelpersQuestion">
+	<input type="submit">
+	
+</form>
+	
+	
+<script>
+
+	var theHelpersForm = document.getElementById("theHelpersForm");
+	var theHelpersQuestion = document.getElementById("theHelpersQuestion");
+
+	theHelpersForm.addEventListener("submit", function (event) {
+		event.preventDefault();
+		
+		window.postMessage({
+			type: "theHelpers.question",
+			question: theHelpersQuestion.value
+		}, "*");
+		
+		theHelpersQuestion.value = "";
+	});
+
+</script>

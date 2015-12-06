@@ -9,8 +9,10 @@ module.exports = function (logger, redis, socket, shortid) {
     client.keys('question:*', function (err, keys) {
       keys.forEach(function (key) {
         client.get(key, function (err, value) {
-          const id = key.split(':').pop();
-          socket.emit('question', { id: id, text: value });
+          client.ttl(key, function (err, ttl) {
+            const id = key.split(':').pop();
+            socket.emit('question', { id: id, text: value, ttl: ttl });
+          });
         });
       });
     });
@@ -19,7 +21,7 @@ module.exports = function (logger, redis, socket, shortid) {
   return {
     ask: function (question) {
       const id = shortid.generate();
-      client.set(`question:${id}`, question);
+      client.setex(`question:${id}`, 300, question);
       socket.emit('question', { id: id, text: question });
       return id;
     },
@@ -27,6 +29,7 @@ module.exports = function (logger, redis, socket, shortid) {
     answer: function (id) {
       client.set(`assigned:${id}`, true);
       socket.emit('answer', id);
+      return id;
     }
   };
 };

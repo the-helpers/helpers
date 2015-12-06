@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Helpers</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 
@@ -14,11 +14,16 @@
   <link rel="stylesheet" type="text/css" href="css/helpers.css"/>
 </head>
 <body ng-controller="Init">
-  <div id="titlebox">
+
+  <!-- Title -->
+
+  <div id="titlebox" ng-class="{in:showTitleBox}" class="fade">
     <h1>Helpers.</h1>
     <h2>Crowdsource every day desktop problems into the cloud</h2>
   </div>
-  <div class="container">
+
+  <!-- Lobby: Ask or answer a question -->
+  <div class="container" ng-show="showLobby">
     <div class="row">
       <div class="neededhelp" ng-show="showButtonLeft">
         <button class="ask" ng-class="hideClass" ng-click="enterQuestion()" >I need help</button>
@@ -31,10 +36,6 @@
 
 
         <div ng-show="showQuestions" class="showHideTransition">
-          <!--
-          <div class="filter">
-            <input type="text" placeholder="filter list" ng-model="query" />
-          </div>-->
           <section class="questions" ng-controller="QuestionsCtrl">
             <ol>
               <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
@@ -45,26 +46,11 @@
       </div>
     
     </div>
-    <!--
-    <div class="row">
-      </div>
-      <div class="one-half column">
+  </div>
 
-        <div ng-show="showQuestions" class="showHideTransition">
-          <div class="filter">
-            <input type="text" placeholder="filter list" ng-model="query" />
-          </div>
-          <section class="questions" ng-controller="QuestionsCtrl">
-            <ol>
-              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
-            </ol>
-          </section>
-        </div>
+  <!-- Chat -->
 
-      </div>
-
-    </div>
-    -->
+  <div class="container" ng-show="showChat">
   </div>
 
 </body>

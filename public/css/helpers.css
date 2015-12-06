@@ -9,6 +9,7 @@ body {
   margin: 60px auto;
   width: 83%;
   text-align: center;
+  position: relative;
 }
 
 .neededhelp button {
@@ -102,3 +103,52 @@ button.help {
 }
 
 
+section.ask {
+  text-align: center;
+}
+
+input.ask {
+  width: 50%;
+}
+
+.fade {
+  transition: 1s ease-in-out all;
+  opacity: 0;
+  top: -200px;
+}
+
+.fade.in {
+  top: 0;
+  opacity: 1;
+}
+
+.row.buttons {
+  text-align: center;
+}
+
+.questions {
+  width: 50%;
+  margin: auto;
+}
+
+.question-list {
+  width: 100%;
+  margin: auto;
+}
+
+.questions > .filter {
+  text-align: center;
+  width: 100%;
+}
+
+.questions > .filter > input {
+  width: 100%;
+}
+
+ol {
+  list-style-type: none;
+}
+
+ol > li:hover {
+  color: #33c3f0;
+}
