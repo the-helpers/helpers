@@ -6,8 +6,8 @@ module.exports = function (logger, socket) {
   });
 
   return {
-    msg: function (message) {
-      socket.emit('message', { message: message });
+    msg: function (message, usrid) {
+      socket.emit('message', { message: message, usrid: usrid });
     }
   };
 };

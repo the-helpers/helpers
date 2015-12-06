@@ -52,9 +52,11 @@
   <!-- Chat -->
   <div class="chat container" ng-show="showChat" ng-controller="ChatCtrl">
     <video ng-src="{{videoUrl}}"></video>
+    <div class="scrollbarblocker">
     <ul>
-      <li ng-repeat="message in messages track by $index"">{{message}}</li>
+      <li style="text-align:{{message.floatClass}};" ng-repeat="message in messages track by $index"><span style="color:#{{message.usrid}}">{{message.message}}</span></li>
     </ul>
+    </div>
     <input type="text" placeholder="Don't be strangers" ng-model="Message" ng-keydown="sendMessage($event)" />
   </div>
 

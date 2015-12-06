@@ -41,7 +41,6 @@ helpersApp.directive('xngFocus', function() {
     };    
 });
 
-
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   var socket = io.connect();
 
@@ -131,12 +130,18 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
 helpersApp.controller('ChatCtrl', function($scope, $http) {
   $scope.messages = [];
 
+  var red = 120 + Math.floor(Math.random()*80);
+  var green = 100 + Math.floor(Math.random()*80);
+  var blue = 40 + Math.floor(Math.random()*80);
+  const userid = red.toString(16) + green.toString(16)+blue.toString(16);
+  $scope.userid = userid;
+
   $scope.sendMessage = function ($event) {
     if ($event.keyCode == 13) {
-
+      console.log(userid);
       $http({
         method: 'POST',
-        data: { message: $scope.Message },
+        data: { message: $scope.Message, usrid: userid },
         url: '/message'
       }).then(function successCallback(response) {
         $scope.Message = "";
@@ -146,8 +151,9 @@ helpersApp.controller('ChatCtrl', function($scope, $http) {
   };
 
   var socket = io.connect();
-  socket.on('message', function (message) {
-    $scope.messages.push(message.message);
+  socket.on('message', function (data) {
+    data.floatClass = (data.usrid == $scope.userid) ? "right" : "left";
+    $scope.messages.push(data);
     $scope.$apply();
   });
 });
