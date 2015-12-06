@@ -30,7 +30,7 @@
         <button class="ask" ng-class="hideClass" ng-click="enterQuestion()" >I need help</button>
         <input class="ask buttonLikeInput" xng-focus="focusOnClick" ng-class="expandClassQuestion" type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" ng-controller="AskCtrl" />
       </div>
-
+      <br class="unbreak"/>
       <div class="providehelp" ng-show="showButtonRight">
         <button class="help" ng-show="buttonXorInput" ng-click="showQuestionList()">I want to help</button>
         <input class="buttonLikeInput" type="text" ng-show="!buttonXorInput" ng-class="expandClassFilter" placeholder="Looking for a particular question?" ng-model="query" />

@@ -77,10 +77,12 @@ button.help {
 
 .neededhelp {
 	left: 0;
+	top: 0;
 }
 
 .providehelp {
 	right: 0;
+	top: 80px;
 }
 
 .providehelp input {
@@ -93,6 +95,23 @@ button.help {
 }
 
 
+
+.unbreak {
+
+}
+
+@media (min-width: 850px) {
+	.unbreak {
+		height: 0;
+		width: 0;
+		display: none;
+		visibility: hidden;
+	}
+
+	.providehelp {
+		top: 0;
+	}
+}
 /* ***************
  * Animation stuff
  * *************** */
