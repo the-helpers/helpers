@@ -14,12 +14,18 @@
   <link rel="stylesheet" type="text/css" href="css/helpers.css"/>
 </head>
 <body ng-controller="Init">
+
+  <!-- Title -->
+
   <div id="titlebox" ng-class="{in:showTitleBox}" class="fade">
     <h1>Helpers.</h1>
     <h2>Crowdsource every day desktop problems into the cloud</h2>
   </div>
-  <div class="container">
-    <div class="row">
+
+  <!-- Lobby: Ask or answer a question -->
+
+  <div class="container" ng-show="showLobby">
+    <div class="row buttons">
 
 
       <div id="neededhelp" ng-show="showButtonLeft">
@@ -38,22 +44,25 @@
         </section>
 
       </div>
-      <div class="one-half column">
 
-        <div ng-show="showQuestions" class="showHideTransition">
-          <div class="filter">
-            <input type="text" placeholder="filter list" ng-model="query" />
-          </div>
-          <section class="questions" ng-controller="QuestionsCtrl">
-            <ol>
-              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
-            </ol>
-          </section>
+      <div class="questions" ng-show="showQuestions" class="showHideTransition">
+        <div class="filter">
+          <input type="text" placeholder="Looking for a particular question?" ng-model="query" />
         </div>
+        <section class="question-list" ng-controller="QuestionsCtrl">
+          <ol>
+            <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
+          </ol>
+        </section>
 
       </div>
 
     </div>
+  </div>
+
+  <!-- Chat -->
+
+  <div class="container" ng-show="showChat">
   </div>
 
 </body>

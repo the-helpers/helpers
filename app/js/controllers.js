@@ -8,6 +8,8 @@ helpersApp.controller('Init', function($scope) {
   $scope.showHelpForm = false;
   $scope.showQuestions = false;
   $scope.showTitleBox = true;
+  $scope.showLobby = true;
+  $scope.showChat = false;
 
   $scope.enterQuestion = function() {
     $scope.showButtonRight = false;
@@ -60,6 +62,8 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       data: { id: id },
       url: '/answer'
     }).then(function successCallback(response) {
+      $scope.$parent.showLobby = false;
+      $scope.$parent.showChat = true;
     }, function errorCallback(response) {
     });
   }
