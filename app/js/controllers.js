@@ -5,25 +5,41 @@ var helpersApp = angular.module('helpersApp', ['ngAnimate']);
 helpersApp.controller('Init', function($scope) {
   $scope.showButtonRight = true;
   $scope.showButtonLeft = true;
-  $scope.showHelpForm = false;
+
   $scope.showQuestions = false;
+  $scope.buttonXorInput = true;
 
   $scope.enterQuestion = function() {
+    $scope.focusOnClick = true;
+    $scope.expandClassQuestion = 'wide';
+    $scope.hideClass = 'hideMe';
+
     $scope.showButtonRight = false;
-    $scope.showHelpForm = true;
   };
 
   $scope.showQuestionList = function() {
-    $scope.showButtonLeft = false;
+    $scope.expandClassFilter = 'wide';
+
     $scope.showQuestions = true;
+    $scope.buttonXorInput = false;
+    $scope.showButtonLeft = false;
   };
+});
+
+helpersApp.directive('xngFocus', function() {
+  return function(scope, element, attrs) {
+     scope.$watch(attrs.xngFocus, 
+       function (newValue) {
+          newValue && element[0].focus();
+       },true);
+    };    
 });
 
 
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   var socket = io.connect();
 
-  $scope.hint = "How can we help you today?";
+  $scope.hint = "with";
 
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {

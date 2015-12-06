@@ -1,34 +1,51 @@
 /* ************
  * Static stuff
  * ************ */
+body {
+	overflow-y: scroll;
+}
+
  #titlebox {
   margin: 60px auto;
   width: 83%;
   text-align: center;
 }
 
-/* ***************
- * Animation stuff
- * *************** */
-.showHideTrhctansition {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+.neededhelp button {
+	float: left;
+}
+.neededhelp input {
+	float: left;
 }
 
-.showHideTransition.ng-hide {
-  opacity:0;
+input.buttonLikeInput {
+	width: 200px;
+	height: 50px;
+	padding-left: 50px;
+}
+
+.hideMe {
+	display: none;
+}
+
+input.wide {
+	width: 600px;
 }
 
 h1 {
   font-size: 7rem;
+  color: #FFF;
 }
 
 h2 {
   font-size: 2.5rem;
+  color: #FFF;
 }
 
 .container {
   text-align: center;
+  margin: auto;
+  width: 76%;
 }
 
 button.ask, button.help {
@@ -40,16 +57,48 @@ button.ask, button.help {
 
 button.ask {
   margin-right: 50px;
+  position: absolute;
+  left: 0;
+  background-color: #FFF;
 }
 
 button.help {
   margin-left: 50px;
 }
 
-#neededhelp, #providehelp {
-  display: inline-block;
+.neededhelp, .providehelp {
+	background-color: #FFFFFF;
+	position: absolute;
 }
 
-input.ask {
-  width: 50%;
+.neededhelp {
+	left: 0;
 }
+
+.providehelp {
+	right: 0;
+}
+
+
+
+/* ***************
+ * Animation stuff
+ * *************** */
+.showHideTransition {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.showHideTransition.ng-hide {
+  opacity:0;
+}
+
+
+.wide-add, .wide-remove {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s;
+}
+
+
