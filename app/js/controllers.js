@@ -1,34 +1,51 @@
 "use strict";
 
-var helpersApp = angular.module('helpersApp', ['ngAnimate']);
+var helpersApp = angular.module('helpersApp', ['ngAnimate', 'util']);
 
 helpersApp.controller('Init', function($scope) {
   $scope.showButtonRight = true;
   $scope.showButtonLeft = true;
-  $scope.showHelpForm = false;
+
   $scope.showQuestions = false;
+  $scope.buttonXorInput = true;
   $scope.showTitleBox = true;
   $scope.showLobby = true;
   $scope.showChat = false;
 
   $scope.enterQuestion = function() {
+    $scope.focusOnClick = true;
+    $scope.expandClassQuestion = 'wide';
+    $scope.hideClass = 'hideMe';
+
     $scope.showButtonRight = false;
     $scope.showHelpForm = true;
     $scope.showTitleBox = false;
   };
 
   $scope.showQuestionList = function() {
-    $scope.showButtonLeft = false;
+    $scope.expandClassFilter = 'wide';
+
     $scope.showQuestions = true;
+    $scope.buttonXorInput = false;
+    $scope.showButtonLeft = false;
     $scope.showTitleBox = false;
   };
+});
+
+helpersApp.directive('xngFocus', function() {
+  return function(scope, element, attrs) {
+     scope.$watch(attrs.xngFocus, 
+       function (newValue) {
+          newValue && element[0].focus();
+       },true);
+    };    
 });
 
 
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   var socket = io.connect();
 
-  $scope.hint = "How can we help you today?";
+  $scope.hint = "with";
 
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {
@@ -74,6 +91,7 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
   });
 
   socket.on('question', function (question) {
+    question.askedAgo = util.askedAgo(question.ttl) + ' ago';
     $scope.questions.push(question);
     $scope.$apply();
   });

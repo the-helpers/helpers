@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Helpers</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 
@@ -23,41 +23,29 @@
   </div>
 
   <!-- Lobby: Ask or answer a question -->
-
   <div class="container" ng-show="showLobby">
-    <div class="row buttons">
-
-
-      <div id="neededhelp" ng-show="showButtonLeft">
-        <button class="ask" ng-click="enterQuestion()">I need help</button>
+    <!--<div class="row">-->
+      <div class="neededhelp" ng-show="showButtonLeft">
+        <button class="ask" ng-class="hideClass" ng-click="enterQuestion()" >I need help</button>
+        <input class="ask buttonLikeInput" xng-focus="focusOnClick" ng-class="expandClassQuestion" type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" ng-controller="AskCtrl" />
       </div>
 
+      <div class="providehelp" ng-show="showButtonRight">
+        <button class="help" ng-show="buttonXorInput" ng-click="showQuestionList()">I want to help</button>
+        <input class="buttonLikeInput" type="text" ng-show="!buttonXorInput" ng-class="expandClassFilter" placeholder="filter list" ng-model="query" />
 
-      <div id="providehelp" ng-show="showButtonRight">
-        <button class="help" ng-click="showQuestionList()">I want to help</button>
-      </div>
-    </div>
-    <div class="row">
-      <div ng-show="showHelpForm" class="showHideTransition">
-        <section class="ask" ng-controller="AskCtrl">
-          <input class="ask" type="text" placeholder="{{hint}}" ng-model="Question" ng-keydown="askQuestion($event)" />
-        </section>
 
-      </div>
-
-      <div class="questions" ng-show="showQuestions" class="showHideTransition">
-        <div class="filter">
-          <input type="text" placeholder="Looking for a particular question?" ng-model="query" />
+        <div ng-show="showQuestions" class="questionList showHideTransition">
+          <section class="questions" ng-controller="QuestionsCtrl">
+            <ol>
+              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
+            </ol>
+          </section>
         </div>
-        <section class="question-list" ng-controller="QuestionsCtrl">
-          <ol>
-            <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
-          </ol>
-        </section>
 
       </div>
-
-    </div>
+    
+    <!--</div>-->
   </div>
 
   <!-- Chat -->
