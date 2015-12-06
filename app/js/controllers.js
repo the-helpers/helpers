@@ -55,6 +55,7 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
+        $scope.$parent.showLobby = false;
         const myId = response.data;
 
         window.postMessage({
