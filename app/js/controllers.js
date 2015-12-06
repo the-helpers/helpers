@@ -87,9 +87,28 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       data: { id: id },
       url: '/answer'
     }).then(function successCallback(response) {
-      $scope.$parent.showLobby = false;
-      $scope.$parent.showChat = true;
+      
+      var peer = new Peer('xx_' + id, {
+        host: 'localhost',
+        port: 8000,
+        path: '/p2p'
+      });
+      
+      navigator.webkitGetUserMedia({ video: true, audio: true }, function (stream) {
+        peer.call(id, stream);
+        peer.on('stream', function (remoteStream) {
+          var url = URL.createObjectURL(remoteStream);
+          console.log(url);
+          $scope.$parent.showLobby = false;
+          $scope.$parent.showChat = true;
+          $scope.$parent.videoUrl = url;
+        });
+      }, function (err) {
+        console.log("Failed to get stream");
+      });
+      
     }, function errorCallback(response) {
+      console.log(response);
     });
   }
 

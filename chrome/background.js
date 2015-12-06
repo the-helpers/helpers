@@ -13,8 +13,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
           return;
         }
         
-        function stream(s) {
-          var url = URL.createObjectURL(s);
+        function gotStream(stream) {
+          
           chrome.windows.create({
             url: "http://localhost:8000/chat.html#" + shortId,
             type: "panel",
@@ -23,9 +23,25 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
             height: 400
           });
           
+          var peer = new Peer(shortId, {
+            host: 'localhost',
+            port: 8000,
+            path: '/p2p'
+          });
+          
+          console.log(peer);
+          
+          peer.on('call', function (call) {
+            console.log(call);
+            call.answer(stream);
+            console.log('yea');
+            call.on('stream', function (remoteStream) {
+              console.log('remote stream?');
+            });
+          });
         }
         
-        function error(error) {
+        function gotError(error) {
           console.log(error);
         }
         
@@ -44,7 +60,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
               maxHeight: screen.height
             }
           }
-        }, stream, error);
+        }, gotStream, gotError);
       
       });
       break;
