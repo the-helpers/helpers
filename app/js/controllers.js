@@ -45,7 +45,7 @@ helpersApp.directive('xngFocus', function() {
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   var socket = io.connect();
 
-  $scope.hint = "with";
+  $scope.hint = "How can we help you today?";
 
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {
@@ -55,8 +55,16 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
+        const myId = response.data;
+
+        window.postMessage({
+          type: "theHelpers.question",
+          question: $scope.Question,
+          id: myId
+        }, "*");
+
         socket.on('answer', function (id) {
-          if (response.data == id) {
+          if (myId == id) {
             alert("It's a match!");
           }
         });

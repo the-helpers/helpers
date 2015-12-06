@@ -12,6 +12,7 @@ whiteHorse
   .useAs('body-parser', 'bodyParser')
   .useAs('socket.io', 'io')
   .useAs('url', 'URL')
+  .useAs('bluebird', 'Promise')
   .use('http')
   .use('path')
   .run(__dirname, 'modules', function (err) {

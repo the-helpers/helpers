@@ -32,13 +32,13 @@
 
       <div class="providehelp" ng-show="showButtonRight">
         <button class="help" ng-show="buttonXorInput" ng-click="showQuestionList()">I want to help</button>
-        <input class="buttonLikeInput" type="text" ng-show="!buttonXorInput" ng-class="expandClassFilter" placeholder="filter list" ng-model="query" />
+        <input class="buttonLikeInput" type="text" ng-show="!buttonXorInput" ng-class="expandClassFilter" placeholder="Looking for a particular question?" ng-model="query" />
 
 
         <div ng-show="showQuestions" class="questionList showHideTransition">
           <section class="questions" ng-controller="QuestionsCtrl">
             <ol>
-              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}}</li>
+              <li ng-repeat="question in questions | filter:query" ng-click="answerQuestion(question.id)">{{question.text}} ~ {{question.askedAgo}}</li>
             </ol>
           </section>
         </div>
