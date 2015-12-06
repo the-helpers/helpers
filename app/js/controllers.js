@@ -126,3 +126,11 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
     $scope.$apply();
   });
 });
+
+helpersApp.controller('ChatCtrl', function($scope) {
+
+  $scope.sendMessage = function ($event) {
+    if ($event.keyCode == 13) {
+    }
+  };
+});
