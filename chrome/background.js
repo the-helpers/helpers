@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         function gotStream(stream) {
           
           chrome.windows.create({
-            url: "http://localhost:8000/chat.html#" + shortId,
+            url: "http://localhost:8000/index.html#" + shortId,
             type: "panel",
             focused: true,
             width: 400,
