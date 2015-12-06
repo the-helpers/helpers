@@ -27,6 +27,7 @@ module.exports = function (logger, redis, socket, shortid) {
     answer: function (id) {
       client.set(`assigned:${id}`, true);
       socket.emit('answer', id);
+      return id;
     }
   };
 };
