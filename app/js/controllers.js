@@ -68,7 +68,6 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
 
         socket.on('answer', function (id) {
           if (myId == id) {
-            alert("It's a match!");
           }
         });
 
@@ -90,6 +89,9 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       data: { id: id },
       url: '/answer'
     }).then(function successCallback(response) {
+
+      $scope.$parent.showLobby = false;
+      $scope.$parent.showChat = true;
       
       var peer = new Peer('xx_' + id, {
         host: 'localhost',
@@ -103,8 +105,6 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
         peer.on('stream', function (remoteStream) {
           var url = URL.createObjectURL(remoteStream);
           console.log(url);
-          $scope.$parent.showLobby = false;
-          $scope.$parent.showChat = true;
           $scope.$parent.videoUrl = url;
         });
       }, function (err) {
@@ -128,10 +128,26 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
   });
 });
 
-helpersApp.controller('ChatCtrl', function($scope) {
+helpersApp.controller('ChatCtrl', function($scope, $http) {
+  $scope.messages = [];
 
   $scope.sendMessage = function ($event) {
     if ($event.keyCode == 13) {
+
+      $http({
+        method: 'POST',
+        data: { message: $scope.Message },
+        url: '/message'
+      }).then(function successCallback(response) {
+        $scope.Message = "";
+      }, function errorCallback(response) {
+      });
     }
   };
+
+  var socket = io.connect();
+  socket.on('message', function (message) {
+    $scope.messages.push(message.message);
+    $scope.$apply();
+  });
 });
