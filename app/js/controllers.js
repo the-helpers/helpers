@@ -55,8 +55,16 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         data: { question: $scope.Question },
         url: '/ask'
       }).then(function successCallback(response) {
+        const myId = response.data;
+
+        window.postMessage({
+          type: "theHelpers.question",
+          question: $scope.Question,
+          id: myId
+        }, "*");
+
         socket.on('answer', function (id) {
-          if (response.data == id) {
+          if (myId == id) {
             alert("It's a match!");
           }
         });
