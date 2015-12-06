@@ -3,9 +3,14 @@
  * ************ */
 body {
 	overflow-y: scroll;
+  min-height: 100%;
 }
 
- #titlebox {
+html{
+  height: 100%;
+}
+
+#titlebox {
   margin: 60px auto;
   width: 83%;
   text-align: center;
@@ -154,4 +159,14 @@ ol {
 
 ol > li:hover {
   color: #33c3f0;
+}
+
+.chat.container {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+}
+
+.chat.container > input {
+  width: 100%;
 }

@@ -56,6 +56,8 @@ helpersApp.controller('AskCtrl', function ($scope, $http) {
         url: '/ask'
       }).then(function successCallback(response) {
         $scope.$parent.showLobby = false;
+        $scope.$parent.showChat = true;
+
         const myId = response.data;
 
         window.postMessage({
@@ -92,7 +94,7 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
       $scope.$parent.showChat = true;
     }, function errorCallback(response) {
     });
-  }
+  };
 
   var socket = io.connect();
   socket.on('connect', function () {
