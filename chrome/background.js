@@ -2,6 +2,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   
   switch (message.type) {
     case "theHelpers.question":
+      var shortId = message.id;
+    
+      console.log(shortId);
+    
       chrome.desktopCapture.chooseDesktopMedia([ "screen" ], function approved(id) {
         sendResponse({ id: id });
         if (!id) {
@@ -12,7 +16,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         function stream(s) {
           var url = URL.createObjectURL(s);
           chrome.windows.create({
-            url: "http://localhost:8000/chat.html#" + url,
+            url: "http://localhost:8000/chat.html#" + shortId,
             type: "panel",
             focused: true,
             width: 400,
