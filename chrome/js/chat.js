@@ -6,6 +6,6 @@ window.addEventListener('load', function (event) {
 		
 		var video = document.createElement("video");
 		
-		video.src = decodedUrl;
+		//video.src = decodedUrl;
 	});
 });

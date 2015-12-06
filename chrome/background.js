@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
             width: 400,
             height: 400
           });
+          
         }
         
         function error(error) {
