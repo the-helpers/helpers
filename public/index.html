@@ -51,6 +51,9 @@
   <!-- Chat -->
   <div class="chat container" ng-show="showChat" ng-controller="ChatCtrl">
     <video ng-src="{{videoUrl}}"></video>
+    <ul>
+      <li ng-repeat="message in messages">{{message}}</li>
+    </ul>
     <input type="text" placeholder="Don't be strangers" ng-model="Message" ng-keydown="sendMessage($event)" />
   </div>
 

@@ -128,9 +128,15 @@ helpersApp.controller('QuestionsCtrl', function($scope, $http) {
 });
 
 helpersApp.controller('ChatCtrl', function($scope) {
+  var socket = io.connect();
+  $scope.messages = [];
 
   $scope.sendMessage = function ($event) {
     if ($event.keyCode == 13) {
+      socket.emit('message', $scope.Message);
+      $scope.messages.push($scope.Message);
+      $scope.Message = "";
     }
+
   };
 });
