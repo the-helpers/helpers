@@ -1,18 +1,20 @@
 'use strict';
 
-module.exports = function (logger, redis, socket, shortid) {
+module.exports = function (logger, redis, socket, shortid, Promise) {
   const client = redis.createClient();
+  Promise.promisifyAll(client);
 
   socket.on('connection', function (socket){
     logger.info('A user connected');
 
-    client.keys('question:*', function (err, keys) {
-      keys.forEach(function (key) {
-        client.get(key, function (err, value) {
-          client.ttl(key, function (err, ttl) {
-            const id = key.split(':').pop();
-            socket.emit('question', { id: id, text: value, ttl: ttl });
-          });
+    client.keysAsync('question:*').each(function (key) {
+      client.getAsync(key).then(function (value) {
+        const id = key.split(':').pop();
+        return { id: id, text: value };
+      }).then(function(obj) {
+        client.ttlAsync(key).then(function (ttl) {
+          obj.ttl = ttl;
+          socket.emit('question', obj);
         });
       });
     });

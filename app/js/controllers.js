@@ -45,7 +45,7 @@ helpersApp.directive('xngFocus', function() {
 helpersApp.controller('AskCtrl', function ($scope, $http) {
   var socket = io.connect();
 
-  $scope.hint = "with";
+  $scope.hint = "How can we help you today?";
 
   $scope.askQuestion = function ($event) {
     if ($event.keyCode == 13) {
